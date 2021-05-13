@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pies | Bethany's hand Shop</title>
+    <link rel="stylesheet" href="site.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="hands.html">hands</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <aside>
+        <img src="images/logo.png" alt="Ulgas hand shop" />
+      </aside>
+
+      <article>
+        <h1>Hands</h1>
+
+        <section class="columns-desktop">
+          <div class="hand">
+            <img src="images/lefthand.png" alt="lefthand" />
+            <div class="columns">
+              <div class="title">left hand</div>
+              <div class="price">$125.95</div>
+            </div>
+            <p class="desc">beautiful left hand</p>
+            <button data-order="lefthand">Order</button>
+          </div>
+
+          <div class="hand">
+            <img src="images/righthand.png" alt="righthand" />
+            <div class="columns">
+              <div class="title">Right hand</div>
+              <div class="price">$155.95</div>
+            </div>
+            <p class="desc">A loners classic!</p>
+            <button data-order="righthand">Order</button>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="hands.html">hands</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+  <script>
+    window.addEventListener("DOMContentLoaded", function(e) {
+      const orderButtons = document.querySelectorAll("button[data-order]");
+
+      orderButtons.forEach(function(button) {
+        
+        button.addEventListener("click", function(e) {
+          const button = e.currentTarget;
+          const container = button.parentNode;
+
+          const order = {
+            id: (id = button.getAttribute("data-order")),
+            title: container.querySelector(".title").innerText,
+            price: container.querySelector(".price").innerText,
+            desc: container.querySelector(".desc").innerText
+          };
+
+          localStorage.setItem("order", JSON.stringify(order));
+
+          const url = window.location.href.replace("hands.html", "order.html");
+          window.location.href = url;
+        });
+      });
+    });
+  </script>
+</html>
